@@ -9,6 +9,6 @@ public class OrderController {
     
     @GetMapping("/order")
     public String order(@RequestParam String item){
-        return "Your Order for " +item+ "has been received";
+        return "Your Order for " +item+ " has been received";
     }
 }

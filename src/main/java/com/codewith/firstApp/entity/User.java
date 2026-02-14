@@ -1,4 +1,4 @@
-package com.codewith.firstApp.model;
+package com.codewith.firstApp.entity;
 
 import jakarta.persistence.*;
 
@@ -13,7 +13,6 @@ public class User {
     private String name;
     private String email;
 
-    // Getters and Setters
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }
