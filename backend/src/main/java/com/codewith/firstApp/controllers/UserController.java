@@ -18,7 +18,11 @@ import com.codewith.firstApp.service.UserService;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "https://springboot-rest-user-api-git-main-hari-saravanaa-ss-projects.vercel.app/"
+})
+
 public class UserController {
 
     @Autowired
