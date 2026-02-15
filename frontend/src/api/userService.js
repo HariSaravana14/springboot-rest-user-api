@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/users";
+const BASE_URL = "https://user-crud-k72s.onrender.com/users";
 
 
 export const getUsers = () => axios.get(BASE_URL);
