@@ -31,3 +31,13 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Windows reserved device file (cannot be indexed on Windows)
+/backend/nul
+
+# Local logs / temp files (do not commit)
+/build_output.txt
+/server_log.txt
+/tmpclaude-*
+/backend/tmpclaude-*
+/frontend/build_log*.txt

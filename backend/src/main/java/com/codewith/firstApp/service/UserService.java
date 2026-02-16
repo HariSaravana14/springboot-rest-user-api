@@ -1,16 +1,14 @@
 package com.codewith.firstApp.service;
 
-import java.util.List;
+import com.codewith.firstApp.dto.UserResponse;
 
-import com.codewith.firstApp.entity.User;
+import java.util.List;
 
 public interface UserService {
 
-    User saveUser(User user);
+    List<UserResponse> getAllUsers();
 
-    List<User> getAllUsers();
-
-    User updateUser(Long id, User updatedUser);
+    UserResponse getUserById(Long id);
 
     void deleteUser(Long id);
 }

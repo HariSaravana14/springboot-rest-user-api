@@ -5,8 +5,8 @@ import { Button } from "../ui/Button";
 function UserList({ users, onEdit, onDelete }) {
   if (users.length === 0) {
     return (
-      <div className="text-center py-20 bg-slate-900/20 rounded-2xl border border-dashed border-white/10">
-        <p className="text-slate-400 text-lg">No users found. Add some to get started!</p>
+      <div className="text-center py-16 glass-panel">
+        <p className="text-[var(--text-muted)]">No users found. Add some to get started.</p>
       </div>
     );
   }
@@ -24,10 +24,9 @@ function UserList({ users, onEdit, onDelete }) {
             transition={{ duration: 0.4, delay: index * 0.05 }}
             className="group relative"
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/50 to-purple-600/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-            <div className="relative glass-morphism p-6 flex flex-col h-full bg-slate-900/40">
+            <div className="relative glass-panel p-6 flex flex-col h-full">
               <div className="flex flex-row justify-between items-start mb-6">
-                <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/20 shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-[var(--accent-weak)] flex items-center justify-center text-[var(--accent)] border border-[var(--border-color)] shrink-0">
                   <UserIcon size={24} />
                 </div>
                 <div className="flex flex-row gap-1">
@@ -49,18 +48,18 @@ function UserList({ users, onEdit, onDelete }) {
               </div>
 
 
-              <h3 className="text-xl font-bold text-white mb-1 group-hover:text-indigo-400 transition-colors">
+              <h3 className="text-lg font-semibold text-[var(--foreground)] mb-1">
                 {user.name}
               </h3>
 
-              <div className="flex items-center gap-2 text-slate-400 text-sm mt-auto italic">
+              <div className="flex items-center gap-2 text-[var(--text-muted)] text-sm mt-auto">
                 <Mail size={14} />
                 <span className="truncate">{user.email}</span>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-slate-600 tracking-wider uppercase">
-                <span>User ID: {user.id}</span>
-                <span className="px-2 py-1 rounded bg-white/5">Active</span>
+              <div className="mt-4 pt-4 border-t border-[var(--border-color)] flex justify-between items-center text-xs text-[var(--text-muted)]">
+                <span>ID: {user.id}</span>
+                <span className="px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-700">Active</span>
               </div>
             </div>
           </motion.div>

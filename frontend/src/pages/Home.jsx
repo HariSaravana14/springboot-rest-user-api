@@ -4,7 +4,7 @@ import {
   createUser,
   updateUser,
   deleteUser,
-} from "../api/userService";
+} from "../api/api";
 import UserForm from "../components/UserForm";
 import UserList from "../components/UserList";
 import { motion } from "framer-motion";

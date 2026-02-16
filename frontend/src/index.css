@@ -1,113 +1,164 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 @theme {
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --color-primary: #6366f1;
-  --color-secondary: #ec4899;
-  --color-accent: #a855f7;
+  --font-sans: "Inter", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --color-primary: #2563eb;
+  --color-secondary: #0f172a;
+  --color-accent: #2563eb;
 }
 
 :root {
-  --background: #0f172a;
-  --text-main: #f8fafc;
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --text-muted: #64748b;
+  --card-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --input-bg: #ffffff;
+  --accent: #2563eb;
+  --accent-weak: rgba(37, 99, 235, 0.10);
+  --ring: rgba(37, 99, 235, 0.18);
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme='dark'] {
+  --background: #0b1220;
+  --foreground: #e2e8f0;
+  --text-muted: #94a3b8;
+  --card-bg: #0f172a;
+  --sidebar-bg: #0f172a;
+  --border-color: #1f2937;
+  --input-bg: #0b1220;
+  --accent: #60a5fa;
+  --accent-weak: rgba(96, 165, 250, 0.14);
+  --ring: rgba(96, 165, 250, 0.22);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   background-color: var(--background);
-  color: var(--text-main);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
   min-height: 100vh;
-  background-image:
-    radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
 }
 
+#root {
+  min-height: 100vh;
+}
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Shared surfaces */
+.glass-panel,
+.glass-card,
 .glass-morphism {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
 }
 
+.glass-card {
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.glass-card:hover {
+  border-color: color-mix(in oklab, var(--border-color) 70%, var(--accent) 30%);
+  box-shadow: var(--shadow);
+}
+
+/* Typography helpers */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent);
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 12px;
+/* Sidebar Items */
+.sidebar-item {
+  @apply flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200;
+  color: var(--text-muted);
+}
+
+.sidebar-item:hover {
+  color: var(--foreground);
+  background: var(--accent-weak);
+}
+
+.sidebar-item.active {
+  background: var(--accent-weak);
+  color: var(--accent);
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
-  filter: brightness(1.1);
+/* Buttons (used by ui/Button.jsx too) */
+.btn-primary,
+.btn-premium {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-white;
+  background: var(--accent);
+}
+
+.btn-primary:hover,
+.btn-premium:hover {
+  filter: brightness(0.95);
 }
 
 .btn-secondary {
-  background: var(--glass-bg);
-  color: var(--text-main);
-  border: 1px solid var(--glass-border);
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--foreground);
 }
 
 .btn-secondary:hover {
-  background: var(--glass-border);
-  border-color: var(--text-muted);
+  background: color-mix(in oklab, var(--card-bg) 92%, var(--accent) 8%);
 }
 
-input {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid var(--glass-border);
-  border-radius: 12px;
-  padding: 12px 20;
-  color: white;
-  width: 100%;
-  outline: none;
-  transition: all 0.3s ease;
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-transparent;
+  color: var(--text-muted);
 }
 
-input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+.btn-ghost:hover {
+  background: var(--accent-weak);
+  color: var(--foreground);
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+.btn-danger {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid color-mix(in oklab, var(--border-color) 60%, rgb(239 68 68) 40%);
+  color: rgb(185 28 28);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--background);
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.12);
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--glass-border);
-  border-radius: 10px;
+/* Inputs */
+input, select, textarea {
+  @apply w-full border rounded-lg px-4 py-3 outline-none transition-all;
+  background: var(--input-bg);
+  border-color: var(--border-color);
+  color: var(--foreground);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
