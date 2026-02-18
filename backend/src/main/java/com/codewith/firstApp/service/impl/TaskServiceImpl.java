@@ -146,6 +146,8 @@ public class TaskServiceImpl implements TaskService {
                 .projectTitle(task.getProject().getTitle())
                 .assignedUserId(task.getAssignedUser() != null ? task.getAssignedUser().getId() : null)
                 .assignedUserName(task.getAssignedUser() != null ? task.getAssignedUser().getName() : null)
+                .assignedUserEmail(task.getAssignedUser() != null ? task.getAssignedUser().getEmail() : null)
+                .assignedUserRole(task.getAssignedUser() != null ? task.getAssignedUser().getRole().name() : null)
                 .dueDate(task.getDueDate())
                 .createdAt(task.getCreatedAt())
                 .build();

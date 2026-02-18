@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     getAllProjects,
     getAllUsers,
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 
 const AdminPanel = ({ activeTab: initialTab = "projects" }) => {
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState(initialTab);
     const [projects, setProjects] = useState([]);
     const [users, setUsers] = useState([]);
@@ -191,14 +193,21 @@ const AdminPanel = ({ activeTab: initialTab = "projects" }) => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                                 {projects.map(p => (
-                                    <div key={p.id} className="glass-panel p-5">
+                                    <div
+                                        key={p.id}
+                                        className="glass-panel p-5 cursor-pointer hover:bg-slate-50/50 transition-colors"
+                                        onClick={() => navigate(`/project/${p.id}`)}
+                                    >
                                         <div className="flex items-start justify-between gap-3">
                                             <div className="min-w-0">
                                                 <h4 className="font-semibold text-[var(--foreground)] truncate">{p.title}</h4>
                                                 <p className="text-sm text-[var(--text-muted)] truncate">Owner: {p.ownerName}</p>
                                             </div>
                                             <button
-                                                onClick={() => handleDeleteProject(p.id)}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleDeleteProject(p.id);
+                                                }}
                                                 className="btn-ghost p-2"
                                                 title="Delete project"
                                             >

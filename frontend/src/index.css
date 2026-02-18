@@ -147,6 +147,8 @@ input, select, textarea {
   background: var(--input-bg);
   border-color: var(--border-color);
   color: var(--foreground);
+  padding-inline: calc(var(--spacing) * 9);
+  padding-block: calc(var(--spacing) * 4);
 }
 
 input:focus, select:focus, textarea:focus {

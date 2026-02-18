@@ -17,6 +17,8 @@ public class TaskResponse {
     private String projectTitle;
     private Long assignedUserId;
     private String assignedUserName;
+    private String assignedUserEmail;
+    private String assignedUserRole;
     private LocalDate dueDate;
     private LocalDateTime createdAt;
 }
